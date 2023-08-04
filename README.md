@@ -5,3 +5,4 @@ You can connect with me on linktree- (https://linktr.ee/echoaditya)
 
 ![image](https://user-images.githubusercontent.com/110540811/225407338-faeca22d-0ac5-44a9-a17c-89de2fc4061d.png)
 
+[![Stargazers repo roster for @gaurav-aditya/gaurav-aditya.github.io](https://reporoster.com/stars/gaurav-aditya/gaurav-aditya.github.io)](https://github.com/gaurav-aditya/gaurav-aditya.github.io/stargazers)
