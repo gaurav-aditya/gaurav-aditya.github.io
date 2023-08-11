@@ -771,6 +771,140 @@
         referrerpolicy="no-referrer"></script>
     <script src="js/script.js"></script>
     <script src="js/style-switcher.js"></script>
+
+
+    <!--  This is the js section which accepts responses from the form -->
+
+    <!-- ===== JS Files ======  --->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"
+        referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>
+    <script src="js/style-switcher.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com//exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById('msg');
+    
+        const nameInput = form.elements['Name'];
+        const nameRegex = /^[A-Za-z\s]+$/; // Regular expression to match alphabets with spaces
+    
+        nameInput.addEventListener('input', () => {
+            if (!nameRegex.test(nameInput.value.trim())) {
+                showError('Please enter a valid name with alphabets only.');
+            } else {
+                msg.innerHTML = '';
+            }
+        });
+    
+        // Get references to the relevant elements
+        const countryCodeSelect = document.getElementById("countryCodeSelect");
+        const phoneInput = document.querySelector('input[name="Phone"]'); // Replace with the actual input name attribute
+    
+        // Define the country-specific phone number digit limits
+        const countryCodeLimits = {
+            "91": 10,  // India's limit is 10 digits
+            "1": 10,   // United States
+            "44": 10,  // United Kingdom
+            "61": 10,  // Australia
+            "81": 10,  // Japan
+            "86": 11,  // China
+            "49": 10,  // Germany
+            "33": 10,  // France
+            "55": 11,  // Brazil
+            // Add more country code limits as needed
+        };
+        
+    
+        // Listen for changes in the selected country code
+        countryCodeSelect.addEventListener("change", () => {
+            const selectedCountryCode = countryCodeSelect.value;
+            if (countryCodeLimits[selectedCountryCode]) {
+                phoneInput.maxLength = countryCodeLimits[selectedCountryCode];
+            } else {
+                phoneInput.maxLength = 15; // Default maximum length
+            }
+            showErrorIfExceedsLimit();
+        });
+    
+        // Listen for input changes in the phone input
+        phoneInput.addEventListener('input', () => {
+            const selectedCountryCode = countryCodeSelect.value;
+            const enteredPhone = phoneInput.value.replace(/\D/g, ''); // Non-digit characters remove karne ke liye
+            const limit = countryCodeLimits[selectedCountryCode];
+        
+            if (limit) {
+                if (enteredPhone.length === limit) {
+                    phoneInput.value = enteredPhone.substring(0, limit);
+                    console.log("if statement");
+                } else if (enteredPhone.length < limit) {
+                    showError(`Phone number should have at least ${limit} digits.`);
+                    console.log("else ssajusacu")
+                }
+            }
+        
+            showErrorIfExceedsLimit();
+        });
+    
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+    
+            // Check other field validity
+            const emailInput = form.elements['Email'];
+            const subjectInput = form.elements['Subject'];
+            const messageInput = form.elements['Message'];
+    
+            if (!nameRegex.test(nameInput.value.trim())) {
+                showError('Please enter a valid name with alphabets only.');
+                return;
+            }
+    
+            if (emailInput.value.trim() === '') {
+                showError('Please enter your email.');
+                return;
+            }
+    
+            const selectedCountryCode = countryCodeSelect.value;
+            const enteredPhone = phoneInput.value.replace(/\D/g, ''); // Remove non-digit characters
+            const limit = countryCodeLimits[selectedCountryCode];
+    
+            if (limit && enteredPhone.length > limit) {
+                showError(`Phone number should not exceed ${limit} digits.`);
+                return;
+            }
+    
+            if (subjectInput.value.trim() === '') {
+                showError('Please enter the subject.');
+                return;
+            }
+    
+            if (messageInput.value.trim() === '') {
+                showError('Please enter the message.');
+                return;
+            }
+    
+            // If all fields are filled, send the data
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    showSuccess('Message sent successfully');
+                    form.reset();
+                })
+                .catch(error => console.error('Error!', error.message));
+        });
+    
+        function showError(errorMessage) {
+            msg.innerHTML = errorMessage;
+            setTimeout(function () {
+                msg.innerHTML = '';
+            }, 500); // Display error message for 0.5 seconds
+        }
+    
+        function showSuccess(successMessage) {
+            msg.innerHTML = successMessage;
+            setTimeout(function () {
+                msg.innerHTML = '';
+            }, 500); // Display success message for 0.5 seconds
+        }
+    </script>
 </body>
 
 </html>
