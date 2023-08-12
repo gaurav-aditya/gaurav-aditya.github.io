@@ -703,7 +703,7 @@
                     <h3 class="contact-title padd-15"> you can connect with me on all the platforms mentioned above</h3>
                     <h4 class="contact-sub-title padd-15">For Feedback</h4>
                     <!--===== Contact Form ===== -->
-                    <div class="row">
+<!--                     <div class="row">
                         <div class="contact-form padd-15">
                             <div class="row">
                                 <div class="form-item col-6 padd-15">
@@ -739,7 +739,23 @@
                             </div>
                         </div>
                     </div>
-            </section>
+            </section> -->
+
+import { Form, Text } from 'informed';
+import React from 'react';
+export default class Contact Form extends React.Component {
+render() {
+return (
+<Form>
+ <label>
+First name:
+<Text field="name" />
+</label>
+<button type="submit">Submit</button>
+</Form>
+                    )
+                    }
+                    }
             <!-- ===== Contact Section  End  =====  -->
 
         </div>
@@ -774,12 +790,12 @@
 
 
 
-    import { Form, Text } from 'informed'; //https://joepuzzo.github.io/informed/
+import { Form, Text } from 'informed'; //https://gaurav-aditya.github.io/
 import React from 'react';
 
-const SPREADSHEET_ID = 'nhlD3E6xsi2lbDQ71HTJ3oQ1Ql5dIkuiK4IoZYjHD'; //from the URL of your blank Google Sheet
-const CLIENT_ID = '2d280542491u-3aofp4eFeftog7q0u5a73ro566h8vi.apps.googleusercontent.com'; //from https://console.developers.google.com/apis/credentials
-const API_KEY = 'AIzaSyCz5fYFuCORKGXSGu4IwKq4U_HfcdDtB'; //https://console.developers.google.com/apis/credentials
+const SPREADSHEET_ID = '15mi0vHjUzPGtK7Iz0LGtZjwi1hhynz4RcONfuaSGQbo'; //from the URL of your blank Google Sheet
+const CLIENT_ID = '676685555188-c6pta9ecgis1t657jog1b3ut7b0setgt.apps.googleusercontent.com'; //from https://console.developers.google.com/apis/credentials
+const API_KEY = 'AIzaSyDQCgn_dGQ1NqzCvxcoyLK-aW611j7fKkU'; //https://console.developers.google.com/apis/credentials
 const SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 
 export default class ContactForm extends React.Component {
