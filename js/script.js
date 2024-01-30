@@ -81,7 +81,7 @@
 // Typing Animation
 var typed = new Typed(".typing",
     {
-        strings: ["", "Java Developer", "Web Developer", "Data Analytics", "YouTuber"],
+        strings: ["", "Java Developer", "Full Stack Developer", " Freelancer", "Blogger"],
         typeSpeed: 100,
         BackSpeed: 60,
         loop: true
@@ -98,7 +98,7 @@ for (let i = 0; i < totalNavList; i++) {
 
     const a = navList[i].querySelector("a");
     a.addEventListener("click", function () {
-       
+    
         removeBackSection();
         for (let j = 0; j < totalNavList; j++) {
             if (navList[j].querySelector("a").classList.contains("active")) {
