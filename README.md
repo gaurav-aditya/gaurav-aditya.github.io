@@ -1,7 +1,7 @@
 # Portfolio
-<b>This is personal Portfolio of Aditya prakash hosted on github<b> <br>
-you can check it out [https://gaurav-aditya.github.io/] <br>
-You can connect with me on linktree- [https://linktr.ee/echoaditya]
+<b>This is my Personal Portfolio and i have hosted it on github<b> <br>
+live on [https://gaurav-aditya.github.io/] <br>
+<b>More About Me</b>[https://linktr.ee/echoaditya]
 
 ![image](https://user-images.githubusercontent.com/110540811/225407338-faeca22d-0ac5-44a9-a17c-89de2fc4061d.png)
 
